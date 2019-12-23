@@ -316,7 +316,7 @@ Filter.prototype._handleFile = function(relativePath, srcDir, destDir, entry, ou
       result = this.processAndCacheFile(srcDir, destDir, entry, forceInvalidation, isChange, stats);
     } else {
       stats.linked++;
-      if (isChange) {
+      if (isChange && fs.existsSync(outputPath)) {
         fs.unlinkSync(outputPath);
       }
       result = symlinkOrCopySync(srcPath, outputPath);
